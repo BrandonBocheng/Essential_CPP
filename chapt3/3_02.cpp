@@ -4,44 +4,49 @@
 #include <string>
 using namespace std;
 
-template<typename ItType, typename elemType>
-ItType find(ItType first, ItType last, const elemType & value)
-{
-    for(; first != last; ++first)
-    {
-        if(*first == value)
+template<typename ItType, typename eleType>
+ItType myFind(ItType first, ItType last, const eleType &value) {
+    for (; first != last; first++) {
+        if (*first == value) {
             return first;
+        }
     }
+
     return last;
 }
 
-int main()
-{
-    int array[8] = {1, 1, 2, 3, 5, 8, 13, 21};
-    vector<int> ivec(array, array + 8);
-    list<int> ilist(array, array + 8);
+int main() {
+    int arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    vector<int> ivec(arr, arr + 10);
+    list<int> ilist(arr, arr + 10);
 
-    int * p = find(array, array + 8, 5);
-    if(p != array + 8)
-    {
-        // 找到了
-        cout << "find at: " << hex << p << endl;
-    }else
-        cout << "Not find" << endl;
+    int *p = myFind(arr, arr + 10, 9);
+    if (p != arr + 10) {
+        cout << "Find at: " << hex << p << endl;
+    } else {
+        cout << "Not finded" << endl;
+    }
+    cout << "*****************" << endl;
 
-    vector<int>::iterator iter;
-    iter = find(ivec.begin(), ivec.end(), 5);
-    if(iter != ivec.end())
-        cout << "Find" << endl;
-    else
-        cout << "Not find" << endl;
+    vector<int>::iterator vec_iter;
+    vec_iter = myFind(ivec.begin(), ivec.end(), 5);
+    if (vec_iter != ivec.end()) {
+        cout << "vector iterator finded!" << endl;
+    } else {
+        cout << "vector iterator not found!" << endl;
+    }
+    cout << "*****************" << endl;
 
-    list<int>::iterator it_list;
-    it_list = find(ilist.begin(), ilist.end(), 8);
-    if(it_list != ilist.end())
-        cout << "Find" << endl;
-    else
-        cout << "Not find" << endl;
+
+    list<int>::iterator list_iter;
+    list_iter = myFind(ilist.begin(), ilist.end(), 100);
+    if (list_iter != ilist.end()) {
+        cout << "list iterator finded!" << endl;
+    } else {
+        cout << "list iterator not found!" << endl;
+    }
+    cout << "*****************" << endl;
+
 
     return 0;
 }
